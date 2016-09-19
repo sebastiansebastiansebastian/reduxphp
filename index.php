@@ -23,18 +23,22 @@
         <?php 
 			// jokedata is containing the SQL query 
              $jokedata = $connection->query("SELECT * FROM jokes ORDER BY id DESC"); 
-             $joke = $jokedata->fetch_array();
+            # $joke = $jokedata->fetch_array(); (i put it into while loop) 
              ###############################################################################################
              # Oh my god - I need a way to render ALL records from the database, not only the last one :-( #
              # This makes me sick...                                                                       # 
              ###############################################################################################
-             print_r($joke);
+             #print_r($joke);
+			 #while loop for rendering ALL db records
+			 	while($joke = $jokedata->fetch_array()){
+										
                 echo '<!-- single Chuck Norris joke start -->
                 <div class="joke">
-                        <img src="' . $joke['img'] . '" class="norris_pic" alt="Chuck Norris caricature"/>
+                        <img src="' . $joke['img'] . '" class="norris_pic" height="210" alt="Chuck Norris caricature"/>
                         <h2>' . $joke['joke'] .  '</h2>	       
                 </div>';
-                echo '<!-- single joke end -->';
+                echo '<!-- single joke end -->';				
+				}			
     	?>  
     </body>
 </html>
